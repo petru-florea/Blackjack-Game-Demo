@@ -20,4 +20,90 @@ Blackjack is one of the easiest card games to play:
 3) If the **command** is *play_game*, play Blackjack until EOF with **n** players at a table. The game will be played according to the rules stated at the beginning. It is considered that there are **NO** aces in the deck! (That is, the deck will consist of 48 cards, not 52!). The deck of cards will be shuffled every round of Blackjack using the LCG algorithm described above (also applied 50 times). There will be 48 cards in a pack (because we don't have aces). Initially the pack of cards is arranged in the following order: 2 heart, 3 heart, ..., 14 heart, 2 spade, ..., 14 spade, 2 diamond, ..., 14 diamond, 2 clover, ..., 14 clover (Attention there are no cards with a value of 11!). Each round the deck of cards will be shuffled using the LCG algorithm with the current values read from the keyboard. The stake is 10 euros per player so winning the round brings the player 10 euros, and if he loses he will have 10 euros less. If the player runs out of money (under 10 euros) he will leave the table. At the end, the remaining people at the table will be displayed in the format **person_name: sum_money**.
 
 ### Input
-On the first line is a **command** word, representing the subpoint you want to make. For sub-item **1)**, lines such as **<card_number>,<card_coat_of_arms>** are read from the keyboard to the **EOF**, where the **card_number** is an 8-bit, unsigned integer, and the **card_coat_of_arms** is a character string up to 30 characters. For sub-item **2)**, read 6 integers from the keyboard, 3 on one line and 3 on the other, representing the constants a, c and X0. Then read cards to the EOF in the format specified at sub-item 1). For sub-item **3)**, read an integer **n** representing the number of players present at the Blackjack table. On the next **n** lines are the **n** players in the format **<name> <sum_money>**, where **name** is a string representing the name of the player, consisting of a single word, and the **sum_money** represents the amount of money he owns, 32-bit unsigned integer. The following lines up to the EOF read 6 values per line, representing the inputs of the LCG generator for shuffling the cards in the current game. 
+On the first line is a **command** word, representing the subpoint you want to make. For sub-item **1)**, lines such as **<card_number>,<card_coat_of_arms>** are read from the keyboard to the **EOF**, where the **card_number** is an 8-bit, unsigned integer, and the **card_coat_of_arms** is a character string up to 30 characters. For sub-item **2)**, read 6 integers from the keyboard, 3 on one line and 3 on the other, representing the constants a, c and X0. Then read cards to the EOF in the format specified at sub-item 1). For sub-item **3)**, read an integer **n** representing the number of players present at the Blackjack table. On the next **n** lines are the **n** players in the format **<name> <sum_money>**, where **name** is a string representing the name of the player, consisting of a single word, and the **sum_money** represents the amount of money he owns, 32-bit unsigned integer. The following lines up to the EOF read 6 values per line, representing the inputs of the LCG generator for shuffling the cards in the current game.
+  
+### Examples
+Input:
+```
+check_cards
+4,diamond
+3,heart
+12,clover
+17,spade
+7,heart
+9,clover
+7,heart
+```
+Output:
+```
+Rigged card deck
+```
+  
+----------------------------------
+
+Input:
+```
+check_cards
+4,diamond
+3,heart
+12,clover
+10,spade
+7,heart
+9,diamond
+7,spade
+3,heart
+```
+Output:
+```
+Ready for Blackjack
+```
+
+----------------------------------
+
+Input:
+```
+shuffle_cards
+1 5 4
+2 2 3
+4,diamond
+3,heart
+12,clover
+10,spade
+7,heart
+9,diamond
+7,spade
+3,heart
+```
+Output:
+```
+7,spade
+10,spade
+7,heart
+9,diamond
+12,clover
+3,heart
+3,heart
+4,diamond
+```
+
+----------------------------------
+
+Input:
+```
+play_game
+4
+Mihai 100
+Maria 50
+Matei 176
+Andrei 100
+10 26 33 34 37 45
+2 4 30 32 38 48
+3 24 27 34 45 48
+```
+Output:
+```
+Mihai: 70
+Maria: 20
+Matei: 146
+Andrei: 80
+```
